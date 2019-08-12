@@ -3,7 +3,7 @@ var postcss = require('postcss')
 module.exports = postcss.plugin('postcss-terminal4-media', function (opts) {
   opts = opts || {
     map: {
-      images: {}
+      files: {}
     }
   }
 
@@ -11,15 +11,19 @@ module.exports = postcss.plugin('postcss-terminal4-media', function (opts) {
     opts.media_string = '<t4 type="media" formatter="path/*" id="{d}" />'
   }
 
+  if (!opts.selectors) {
+    opts.selectors = ['background-image', 'background', 'src']
+  }
+
   // Work with options here
 
   return function (root) {
-    Object.keys(opts.map.images).forEach(function (imageUrl) {
+    Object.keys(opts.map.files).forEach(function (fileUrl) {
       root.replaceValues(
-        imageUrl, {
-          props: ['background-image', 'background']
+        fileUrl, {
+          props: opts.selectors
         }, function () {
-          return opts.media_string.replace('{d}', opts.map.images[imageUrl])
+          return opts.media_string.replace('{d}', opts.map.files[fileUrl])
         })
     })
   }
