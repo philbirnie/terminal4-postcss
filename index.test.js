@@ -4,7 +4,7 @@ var plugin = require('./')
 
 var sampleOpts = {
   map: {
-    images: {
+    files: {
       '../images/bg-students.jpg': 834055,
       '../images/bg-people.png': 834064,
       '../images/bg-triangle-dots.svg': 834068,
@@ -13,7 +13,9 @@ var sampleOpts = {
       '../images/arrow-right.svg': 834070,
       '../images/uncommon-good.svg': 834073,
       '../images/bg-splash.jpg': 834074,
-      '../images/check.svg': 834078
+      '../images/check.svg': 834078,
+      '../font/fontA.woff': 123456,
+      '../font/fontA.woff2': 123457
     }
   },
   media_string: '<t4 id="{d}" />'
@@ -34,6 +36,14 @@ it('changes url if background-image prop found', function () {
   )
 })
 
+it('changes url if src prop found', function () {
+  return run(
+    '@font-face{font-family:Zilla Slab;font-style:normal;font-weight:400;src:local("Zilla Slab"),local("ZillaSlab-Regular"),url(../font/fontA.woff) format("woff2"),url(../font/fontA.woff2) format("woff")}', // eslint-disable-line max-len
+    '@font-face{font-family:Zilla Slab;font-style:normal;font-weight:400;src:local("Zilla Slab"),local("ZillaSlab-Regular"),url(<t4 id="123456" />) format("woff2"),url(<t4 id="123457" />) format("woff")}', // eslint-disable-line max-len
+    sampleOpts
+  )
+})
+
 it('changes url if background prop found', function () {
   return run(
     'a{ background: url(../images/bg-triangle-dots.svg) }',
@@ -48,6 +58,20 @@ it('changes url if mult background-image props are found', function () {
     'a{ background-image: url(<t4 id="834068" />), url(<t4 id="834069" />) }',
     sampleOpts
   )
+})
+
+it('hits an added selector if set in the options', function () {
+  sampleOpts.selectors = ['href', 'src']
+
+  var result = run(
+    'a{href: url(../images/check.svg) }',
+    'a{href: url(<t4 id="834078" />) }',
+    sampleOpts
+  )
+
+  sampleOpts.selectors = null
+
+  return result
 })
 
 it('does not change images if map is not found', function () {
