@@ -1,20 +1,19 @@
-# PostCSS Terminal4 Media [![Build Status][ci-img]][ci]
+# PostCSS Terminal4 Media [![Build Status](https://travis-ci.org/philbirnie/terminal4-postcss.svg?branch=master)](https://travis-ci.org/philbirnie/terminal4-postcss)
 
-[PostCSS] plugin Uses a map to replace all CSS strings with media references in terminal 4.
+Terminal4 Media plugin Uses a map to replace all CSS strings with media references in terminal 4.
 
-[PostCSS]: https://github.com/postcss/postcss
 [ci-img]:  https://travis-ci.org/philbirnie/postcss-terminal4-media.svg
 [ci]:      https://travis-ci.org/philbirnie/postcss-terminal4-media
 
 ```css
 .foo {
-    /* Input example */
+    background_image: url(../whatever-image.jpg)
 }
 ```
 
 ```css
 .foo {
-  /* Output example */
+    background_image: url(<t4 type="media" formatter="path/*" id=16 />)
 }
 ```
 
@@ -24,4 +23,18 @@
 postcss([ require('postcss-terminal4-media') ])
 ```
 
-See [PostCSS] docs for examples for your environment.
+## Options:
+
+Put all images into a map; the `media_string` value is optional; the default is shown below. `{d}` will be replaced with the resulting ID.
+
+```$json
+{
+    "map": {
+        "images": {
+            "source": new_id
+            "../images/example.jpg": 24
+        }
+    }
+    "media_string": '<t4 type="media" formatter="path/*" id="{d}" />'
+}
+```
