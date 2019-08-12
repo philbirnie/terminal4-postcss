@@ -27,14 +27,14 @@ postcss([ require('postcss-terminal4-media') ])
 
 Put all images into a map; the `media_string` value is optional; the default is shown below. `{d}` will be replaced with the resulting ID.
 
-```$json
+```json
 {
     "map": {
         "images": {
-            "source": new_id
+            "source": 25,
             "../images/example.jpg": 24
         }
-    }
-    "media_string": '<t4 type="media" formatter="path/*" id="{d}" />'
+    },
+    "media_string": "<t4 type=\"media\" formatter=\"path/*\" id=\"{d}\" />"
 }
 ```
