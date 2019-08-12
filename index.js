@@ -17,7 +17,7 @@ module.exports = postcss.plugin('postcss-terminal4-media', function (opts) {
     Object.keys(opts.map.images).forEach(function (imageUrl) {
       root.replaceValues(
         imageUrl, {
-          props: ['background_image', 'background']
+          props: ['background-image', 'background']
         }, function () {
           return opts.media_string.replace('{d}', opts.map.images[imageUrl])
         })

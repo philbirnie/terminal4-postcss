@@ -1,6 +1,6 @@
 {
   "name": "postcss-terminal4-media",
-  "version": "0.1",
+  "version": "1.0.1",
   "description": "PostCSS plugin Uses a map to replace all CSS strings with media references in terminal 4",
   "keywords": [
     "postcss",

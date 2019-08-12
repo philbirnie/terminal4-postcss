@@ -26,10 +26,26 @@ function run (input, output, opts) {
   })
 }
 
-it('changes an image to its appropriate map if found', function () {
+it('changes url if background-image prop found', function () {
   return run(
-    'a{ background_image: url(../images/bg-students.jpg) }',
-    'a{ background_image: url(<t4 id="834055" />) }',
+    'a{ background-image: url(../images/bg-students.jpg) }',
+    'a{ background-image: url(<t4 id="834055" />) }',
+    sampleOpts
+  )
+})
+
+it('changes url if background prop found', function () {
+  return run(
+    'a{ background: url(../images/bg-triangle-dots.svg) }',
+    'a{ background: url(<t4 id="834068" />) }',
+    sampleOpts
+  )
+})
+
+it('changes url if mult background-image props are found', function () {
+  return run(
+    'a{ background-image: url(../images/bg-triangle-dots.svg), url(../images/bg-triangle-dots-l.svg) }', // eslint-disable-line max-len
+    'a{ background-image: url(<t4 id="834068" />), url(<t4 id="834069" />) }',
     sampleOpts
   )
 })
