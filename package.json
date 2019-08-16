@@ -1,6 +1,6 @@
 {
   "name": "postcss-terminal4-media",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "PostCSS plugin Uses a map to replace all CSS strings with media references in terminal 4",
   "keywords": [
     "postcss",
@@ -13,11 +13,11 @@
   },
   "author": "Phil Birnie <phil@7thstreetweb.com>",
   "license": "MIT",
-  "repository": "philbirnie/postcss-terminal4-media",
+  "repository": "philbirnie/terminal4-postcss",
   "bugs": {
-    "url": "https://github.com/philbirnie/postcss-terminal4-media/issues"
+    "url": "https://github.com/philbirnie/terminal4-postcss/issues"
   },
-  "homepage": "https://github.com/philbirnie/postcss-terminal4-media",
+  "homepage": "https://github.com/philbirnie/terminal4-postcss/issues",
   "dependencies": {
     "postcss": "^7.0.6"
   },
